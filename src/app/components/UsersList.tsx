@@ -10,8 +10,8 @@ export const UsersList = async () => {
   const users: IUser[] = await res.json();
 
   return (
-    <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-      <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+    <table className="w-full text-sm text-left text-gray-800 shadow-md">
+      <thead className="text-xs text-gray-200 uppercase bg-primary">
         <tr>
           <th scope="col" className="px-6 py-3">
             Email
@@ -24,13 +24,10 @@ export const UsersList = async () => {
           </th>
         </tr>
       </thead>
-      <tbody className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+      <tbody className="bg-white border-b">
         {users.map((user) => (
           <tr key={user.id}>
-            <td
-              scope="row"
-              className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-            >
+            <td scope="row" className="px-6 py-4 font-medium whitespace-nowrap">
               {user.email}
             </td>
             <td className="px-6 py-4">{user.name}</td>
