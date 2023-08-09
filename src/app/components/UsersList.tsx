@@ -1,3 +1,5 @@
+import { FC } from "react";
+
 interface IUser {
   id: string;
   email: string;
@@ -5,8 +7,23 @@ interface IUser {
   createdAt: string;
 }
 
-export const UsersList = async () => {
-  const res = await fetch("http://127.0.0.1:3001/users");
+interface IParams {
+  email?: string;
+  name?: string;
+}
+
+interface IProps {
+  params?: IParams;
+}
+
+export const UsersList: FC<IProps> = async ({ params }) => {
+  const res = params
+    ? await fetch(
+        "http://127.0.0.1:3001/users?" +
+          new URLSearchParams(params as Record<string, string>).toString()
+      )
+    : await fetch("http://127.0.0.1:3001/users");
+
   const users: IUser[] = await res.json();
 
   return (
